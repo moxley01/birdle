@@ -31,8 +31,6 @@ declare namespace NodeJS {
   export interface ProcessEnv {
     SUPABASE_URL: string;
     SUPABASE_SERVICE_KEY: string;
-    SUPABASE_URL: string;
-    SUPABASE_SERVICE_KEY: string;
     TWILIO_ACCOUNT_SID: string;
     TWILIO_TOKEN: string;
     TWILIO_SOURCE_NUMBER: string;
