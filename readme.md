@@ -57,6 +57,7 @@ Given the popularity of Wordle at the time, I thought it might be cool to make a
 
 I wanted each daily phrase to be something nice and wholesome, something that would inspire you for the day. Positivity can be found anywhere if you look hard enough!
 
+I am submitting this project to the "content discovery" category. All users get the same BIRDLE puzzle each day - the tweets they see are not necessarily from people they follow, and therefore by engaging with this game they have the chance to discover new Twitter users that they might not currently engage with.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -79,14 +80,14 @@ I wanted each daily phrase to be something nice and wholesome, something that wo
 ### Backend
 
 This `/backend` folder contains code for the cloud functions that run daily on Google Cloud Scheduler. It includes
-- A `scrape` function to scrape the day's tweets from the allow-listed Twitter accounts
+- A `scrape` function to grab the day's tweets from the allow-listed Twitter accounts using the v2 `/search` API.
 - A `solve` function to autogenerate a series of puzzle options. After this function runs I have an hour-long window to manually pick one of the options to serve as the day's puzzle, however, if I do not do this then it will automatically run an `autoPickPuzzle` function which will just grab the most suitable one.
 
 The database that the app runs on is a Postgres instance hosted by Supabase.
 
 ### Frontend
 
-The `/frontend` folder contains the main Next.js app. Try running;
+The `/frontend` folder contains the main Next.js app. Try running:
 ```
 cd frontend; npm i; npm run storybook
 ```
