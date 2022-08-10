@@ -1,5 +1,5 @@
 import { TwitterApi } from "twitter-api-v2";
-import { createClient } from "@supabase/supabase-js";
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import { supabaseServiceKey, supabaseUrl } from "./supabaseCredentials";
 import {
     appKey,
@@ -16,14 +16,7 @@ import { getDayData, sendSMS } from "./shared";
  * It will then write the data to the database.
  */
 
-const client = new TwitterApi({
-    appKey,
-    appSecret,
-    accessToken,
-    accessSecret,
-});
-
-const supabase = createClient(supabaseUrl, supabaseServiceKey);
+let supabase: SupabaseClient;
 
 const chunkSize = 10; // Note: the 'batchIndex' in SQL depends on this quantity
 
@@ -70,6 +63,13 @@ async function getAllWeCan(
     await sendSMS(
         `Day ${dayIndex}: scraping ${chunks.length} chunks starting from ${chunkStart}`
     );
+
+    const client = new TwitterApi({
+        appKey,
+        appSecret,
+        accessToken,
+        accessSecret,
+    });
 
     for (const chunk of chunks.slice(chunkStart)) {
         try {
@@ -184,6 +184,8 @@ async function getAllWeCan(
 }
 
 export async function scrape() {
+    supabase = createClient(supabaseUrl, supabaseServiceKey);
+
     const day = await getDayData();
     const { timestampStart, timestampEnd } = getTimeInterval();
 

@@ -1,8 +1,8 @@
-import { createClient } from "@supabase/supabase-js";
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import { supabaseServiceKey, supabaseUrl } from "./supabaseCredentials";
 import { getDayData, sendSMS } from "./shared";
 
-const supabase = createClient(supabaseUrl, supabaseServiceKey);
+let supabase: SupabaseClient;
 
 const wordCount = 4;
 const maxPossiblePuzzles = 10;
@@ -116,6 +116,7 @@ async function getSayings(): Promise<ISaying[]> {
 }
 
 export async function solveAndWrite() {
+    supabase = createClient(supabaseUrl, supabaseServiceKey);
     const currentDay = await getDayData();
     if (!currentDay) {
         console.log("no day data found");
@@ -155,6 +156,7 @@ export async function solveAndWrite() {
 
 // this will serve to pick the first of the current day's puzzles and set it to "picked"
 export async function pickNextPuzzle() {
+    supabase = createClient(supabaseUrl, supabaseServiceKey);
     const currentDay = await getDayData();
     if (!currentDay) {
         console.log("no day data found");

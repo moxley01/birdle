@@ -6,13 +6,11 @@ import {
     sourceNumber,
     targetNumber,
 } from "./twilioCredentials";
-const twilioClient = twilio(accountSid, token);
 
 import { supabaseServiceKey, supabaseUrl } from "./supabaseCredentials";
 
-const supabase = createClient(supabaseUrl, supabaseServiceKey);
-
 export async function getDayData(): Promise<IDayData | null> {
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
     return supabase
         .from("ScrapeData")
         .select("*")
@@ -30,6 +28,7 @@ export async function getDayData(): Promise<IDayData | null> {
 }
 
 export function sendSMS(message: string) {
+    const twilioClient = twilio(accountSid, token);
     return twilioClient.messages.create({
         body: message,
         to: targetNumber,
