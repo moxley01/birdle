@@ -5,11 +5,7 @@ import {
     StoryContext,
     ReactFramework,
 } from "@storybook/react";
-import {
-    within,
-    userEvent,
-    waitFor,
-} from "@storybook/testing-library";
+import { within, userEvent, waitFor } from "@storybook/testing-library";
 import { expect, jest } from "@storybook/jest";
 
 import App, { IProps } from "../pages";

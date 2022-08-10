@@ -6,7 +6,7 @@ import { GetStaticProps } from "next";
 import Game, { IGameState, RootActions, useStore } from "../components/Game";
 import { createClient } from "@supabase/supabase-js";
 
-// Use this mock data as a backup as a worst-case scenario if Supabase is not returning the day's puzzle 
+// Use this mock data as a backup as a worst-case scenario if Supabase is not returning the day's puzzle
 const challenge = "think less live more";
 const solution: [IRow, IRow, IRow, IRow] = [
     {
@@ -153,7 +153,6 @@ function App(props: IProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-
     const supabase = createClient(
         process.env.SUPABASE_URL,
         process.env.SUPABASE_SERVICE_KEY

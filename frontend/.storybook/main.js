@@ -1,7 +1,7 @@
 module.exports = {
     stories: [
         "../stories/**/*.stories.mdx",
-        "../stories/**/*.stories.@(js|jsx|ts|tsx)"
+        "../stories/**/*.stories.@(js|jsx|ts|tsx)",
     ],
     addons: [
         "@storybook/addon-links",
@@ -12,18 +12,21 @@ module.exports = {
     ],
     framework: "@storybook/react",
     core: {
-        builder: "@storybook/builder-webpack5"
+        builder: "@storybook/builder-webpack5",
     },
     typescript: { reactDocgen: false },
     features: {
-        interactionsDebugger: true // 👈 Enable playback controls
+        interactionsDebugger: true, // 👈 Enable playback controls
     },
-    webpackFinal: config => {
+    webpackFinal: (config) => {
+        const fileLoaderRule = config.module.rules.find(
+            (rule) => rule.test && rule.test.test(".svg")
+        );
+        fileLoaderRule.exclude = /\.svg$/;
 
-        const fileLoaderRule = config.module.rules.find(rule => rule.test && rule.test.test('.svg'));
-        fileLoaderRule.exclude = /\.svg$/;  
-
-        config.resolve.alias['zustand/middleware'] = require.resolve('../__mocks__/zustand_middleware.js');
+        config.resolve.alias["zustand/middleware"] = require.resolve(
+            "../__mocks__/zustand_middleware.js"
+        );
 
         // note: should be the same here as next.config.js
         config.module.rules.push({
@@ -32,5 +35,5 @@ module.exports = {
         });
 
         return config;
-    }
+    },
 };

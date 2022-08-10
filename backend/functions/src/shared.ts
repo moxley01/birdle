@@ -1,6 +1,11 @@
 import { createClient } from "@supabase/supabase-js";
 import twilio = require("twilio");
-import { accountSid, token, sourceNumber, targetNumber } from "./twilioCredentials";
+import {
+    accountSid,
+    token,
+    sourceNumber,
+    targetNumber,
+} from "./twilioCredentials";
 const twilioClient = twilio(accountSid, token);
 
 import { supabaseServiceKey, supabaseUrl } from "./supabaseCredentials";

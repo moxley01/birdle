@@ -2,16 +2,16 @@ declare module "*.css";
 declare module "*.svg";
 
 interface IRow {
-    id: string;
-    text: string;
-    author: string;
-    author_full: string;
-    author_profile_url: string;
-    likes: number;
-    retweets: number;
-    quotes: number;
-    replies: number;
-    count: number;
+  id: string;
+  text: string;
+  author: string;
+  author_full: string;
+  author_profile_url: string;
+  likes: number;
+  retweets: number;
+  quotes: number;
+  replies: number;
+  count: number;
 }
 
 interface IExtendedRow extends IRow {

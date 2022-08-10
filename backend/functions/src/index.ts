@@ -38,7 +38,6 @@ export const getDailyPuzzles = functions
         return "success";
     });
 
-
 export const autoPickPuzzle = functions
     .runWith({
         timeoutSeconds: 540,

@@ -24,12 +24,7 @@ export default function TweetBox(props: IProps) {
                     <TwitterTweetEmbed tweetId={props.id} />
                 </div>
             ) : (
-                <article
-                    className={
-                        "twitter-tweet " +
-                        styles.revealed
-                    }
-                >
+                <article className={"twitter-tweet " + styles.revealed}>
                     <div className={styles.header}>
                         {props.author_profile_url ? (
                             <img

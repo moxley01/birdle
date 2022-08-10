@@ -1,10 +1,15 @@
 import { TwitterApi } from "twitter-api-v2";
 import { createClient } from "@supabase/supabase-js";
 import { supabaseServiceKey, supabaseUrl } from "./supabaseCredentials";
-import { appKey, appSecret, accessToken, accessSecret } from "./twitterCredentials";
+import {
+    appKey,
+    appSecret,
+    accessToken,
+    accessSecret,
+} from "./twitterCredentials";
 
 import { chunk } from "lodash";
-import {getDayData, sendSMS} from "./shared";
+import { getDayData, sendSMS } from "./shared";
 
 /**
  * This script will go through all the available Twitter handles, and scrape yesterday's tweets for each one.
@@ -15,7 +20,7 @@ const client = new TwitterApi({
     appKey,
     appSecret,
     accessToken,
-    accessSecret
+    accessSecret,
 });
 
 const supabase = createClient(supabaseUrl, supabaseServiceKey);
@@ -62,7 +67,9 @@ async function getAllWeCan(
     const allHandles = await getHandles();
     const chunks = chunk(allHandles, chunkSize);
 
-    await sendSMS(`Day ${dayIndex}: scraping ${chunks.length} chunks starting from ${chunkStart}`);
+    await sendSMS(
+        `Day ${dayIndex}: scraping ${chunks.length} chunks starting from ${chunkStart}`
+    );
 
     for (const chunk of chunks.slice(chunkStart)) {
         try {
@@ -79,7 +86,7 @@ async function getAllWeCan(
                                 end_time: new Date(timestampEnd).toISOString(),
                                 "tweet.fields": "public_metrics",
                                 expansions: "author_id,attachments.poll_ids",
-                                "user.fields": "username,profile_image_url"
+                                "user.fields": "username,profile_image_url",
                             }
                         )
                         .then((res) => {
@@ -187,7 +194,8 @@ export async function scrape() {
         console.log("Scraped up until batch offset", originDay.batchOffset);
         return;
     } else {
-        if (Number(day.endTime) > (timestampStart + 1000 * 60 * 5)) { // give a 5 minute buffer
+        if (Number(day.endTime) > timestampStart + 1000 * 60 * 5) {
+            // give a 5 minute buffer
             if (day.isComplete) {
                 console.log(
                     "Too early and scraping is already complete (hours remaining)",
@@ -206,7 +214,9 @@ export async function scrape() {
                     Number(day.endTime)
                 );
                 if (updatedDay.batchOffset === day.batchOffset) {
-                    console.log("For some reason that beach offset did not increase. Setting day to complete");
+                    console.log(
+                        "For some reason that beach offset did not increase. Setting day to complete"
+                    );
                     updatedDay.isComplete = true;
                 }
                 await supabase.from("ScrapeData").upsert(updatedDay);
