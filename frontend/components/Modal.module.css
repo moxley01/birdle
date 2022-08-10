@@ -1,0 +1,46 @@
+.wrap {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* for the padding-top, it is the height of the close icon plus the position-top of the close icon */
+.content {
+    position: relative;
+    border-radius: 8px;
+    background-color: var(--main);
+    box-shadow: 0 4px 23px 0 rgb(0 0 0 / 20%);
+    width: 90%;
+    max-height: 100%;
+    overflow-y: auto;
+    max-width: var(--game-max-width);
+    padding: 16px;
+    padding-top: calc(10px + 24px);
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.closeIcon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 24px;
+    width: 24px;
+    display: inline-block;
+    padding: 0;
+    border-width: 0;
+    background: transparent;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.closeIcon:hover {
+    opacity: 1;
+}

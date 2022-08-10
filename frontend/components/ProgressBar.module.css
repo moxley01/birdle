@@ -1,0 +1,10 @@
+.progress {
+    position: absolute;
+    top: 44px;
+    left: 0;
+    width: 50%;
+    height: 2px;
+    background: black;
+    transition: all 1s ease;
+    z-index: 500;
+}

@@ -1,0 +1,20 @@
+{
+  "name": "tweet_hack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "solve": "cd backend && node --loader ts-node/esm solve.ts",
+    "scrape": "cd backend && node --loader ts-node/esm scrape.ts",
+    "start": "cd frontend && npm run open-browser && vercel dev",
+    "start-admin": "cd admin && npm run open-browser && npm run dev",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy-dev": "cd frontend && vercel",
+    "deploy-prod": "cd frontend && vercel --prod",
+    "deploy-backend": "cd backend/functions && firebase deploy --only functions"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {}
+}

@@ -1,0 +1,80 @@
+.revealed {
+    visibility: visible;
+    height: initial;
+    border: 1px solid #cecece;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-bottom: 11px;
+    padding-top: 11px;
+    background: white;
+    border-radius: 12px;
+    display: flex;
+    flex-basis: auto;
+    flex-direction: column;
+    width: 100%;
+    background-color: white;
+    color: black;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 11px;
+    align-items: center;
+}
+
+.logo {
+    height: 46px;
+    width: 46px;
+    border-radius: 46px;
+    background-color: #b3b3b3;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.verified {
+    display: inline-block;
+    height: 1.25em;
+    width: 1.25em;
+    margin-left: 2px;
+    fill: var(--twitter-blue);
+}
+
+.handles {
+    display: flex;
+    flex-direction: column;
+    margin-left: 4px;
+}
+
+.fullName {
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.handle {
+    color: rgb(83, 100, 113);
+}
+
+.revealed p div {
+    margin-top: 2px;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    z-index: -10;
+    position: absolute;
+}
+
+.tweetWrapper {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100%;
+    max-width: 300px;
+    transform: translateX(-50%);
+}

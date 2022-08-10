@@ -1,0 +1,208 @@
+.wrap {
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    height: 100%;
+    color: var(--main-text);
+}
+
+.sticky {
+    position: sticky;
+    top: 0px;
+    z-index: 4;
+    background: var(--main);
+}
+
+.solutionWrapper {
+    overflow: hidden;
+}
+
+.solution {
+    display: grid;
+    align-items: baseline;
+    font-size: calc(var(--solution-letter-size) - 4px);
+    padding: 10px 10px;
+    padding-top: 20px;
+    background-color: var(--main);
+    text-transform: uppercase;
+    column-gap: 2px;
+    font-weight: 100;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: flex-end;
+}
+
+.solution > span {
+    opacity: 0.3;
+    font-family: var(--mono-font), monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--solution-letter-size);
+    height: var(--solution-letter-size);
+    font-weight: bold;
+}
+
+.solution .space {
+    display: inline-block;
+    width: 10px;
+    width: calc(var(--solution-letter-size) * 0.5);
+    height: var(--solution-letter-size);
+}
+
+.solution > span.unfilled {
+    border-bottom: 3px solid var(--solution-unfilled-border);
+    color: transparent;
+}
+
+.solution > span.complete {
+    color: var(--correct-green);
+}
+
+.solution > span.highlighted {
+    opacity: 1;
+}
+
+.solution > span:last-child {
+    margin-right: 0;
+}
+
+.correct,
+.incorrect,
+.present {
+    width: var(--solution-letter-size);
+    height: var(--solution-letter-size);
+    margin-top: 2px;
+    color: black;
+    font-size: calc(var(--solution-letter-size) * 0.6);
+}
+
+.correct {
+    background-color: var(--correct-green);
+    color: #d9d9d9;
+}
+
+.incorrect {
+    background-color: #d4d4d4;
+}
+
+.present {
+    background-color: #d8cd97;
+}
+
+.share {
+    text-align: center;
+    margin-bottom: 5px;
+    height: 0;
+    opacity: 0;
+    transition: opacity 2s ease;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.share.visible {
+    height: initial;
+    opacity: 1;
+}
+
+.grid {
+    height: 100%;
+    min-height: 0;
+    max-width: var(--game-max-width);
+    margin: 0px auto;
+    width: 100%;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--main-border);
+    background-color: var(--main-h-f);
+    align-items: center;
+}
+
+.prompt {
+    padding: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    padding-bottom: 15px;
+    box-sizing: border-box;
+    max-width: var(--game-max-width);
+    width: 100%;
+}
+
+.keyboardRow {
+    display: flex;
+}
+
+.keyboardRow button {
+    margin: 2px;
+    height: 50px;
+    min-width: 0;
+    border: none;
+    background: #575757;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    flex: 1 1 0px;
+    text-align: center;
+    padding: 0;
+}
+
+.tweetBox {
+    font-size: 18px;
+    height: 100%;
+    padding: 20px 40px;
+    padding-top: 0;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 100;
+    position: relative;
+}
+
+@media screen and (max-width: 500px) {
+    .tweetBox {
+        font-size: 10px;
+    }
+}
+
+/* No margins allowed! It fucks with the resulting height. */
+.tweetBox p,
+.tweetBox blockquote {
+    margin: 0;
+}
+
+@keyframes FlipOut {
+    0% {
+        transform: rotateX(-90deg);
+    }
+
+    100% {
+        transform: rotateX(0);
+    }
+}
+
+.correct[data-animation="flip-out"],
+.incorrect[data-animation="flip-out"],
+.present[data-animation="flip-out"] {
+    transform: rotateX(-90deg);
+    animation-name: FlipOut;
+    animation-duration: 250ms;
+    animation-timing-function: ease-in;
+}
