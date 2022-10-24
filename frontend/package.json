@@ -14,7 +14,7 @@
         "amplitude-js": "^8.19.0",
         "classnames": "^2.3.1",
         "immer": "^9.0.15",
-        "next": "^12.2.3",
+        "next": "^12.3.1",
         "next-themes": "^0.2.0",
         "prop-types": "^15.8.1",
         "react": "^18.2.0",
@@ -31,7 +31,7 @@
     },
     "scripts": {
         "dev": "next dev",
-        "build": "next build && next export",
+        "build": "next build",
         "start": "next start",
         "test": "npm run storybook",
         "open-browser": "open http://localhost:3000",
@@ -43,7 +43,8 @@
     "eslintConfig": {
         "extends": [
             "react-app",
-            "react-app/jest"
+            "react-app/jest",
+            "plugin:@next/next/recommended"
         ]
     },
     "browserslist": {
@@ -63,6 +64,7 @@
     },
     "devDependencies": {
         "@babel/core": "^7.18.10",
+        "@next/eslint-plugin-next": "^12.3.1",
         "@storybook/addon-actions": "^6.5.10",
         "@storybook/addon-console": "^1.2.3",
         "@storybook/addon-essentials": "^6.5.10",

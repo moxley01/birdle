@@ -179,6 +179,8 @@ export const getStaticProps: GetStaticProps = async () => {
             }
         });
 
+    console.log("current puzzle", currentPuzzle);
+
     if (!currentPuzzle?.[0]?.puzzle_text) {
         const state = getInitialState(challenge, solution);
         return { props: { state, challengeIndex: "1" } };
